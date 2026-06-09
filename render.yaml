@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: whatsapp-bot
+    runtime: node
+    region: frankfurt
+    plan: free
+    buildCommand: npm --prefix frontend install && cd frontend && npx tsc -b && npx vite build && cd .. && mkdir -p backend/public && cp -r frontend/dist/* backend/public/ && npm --prefix backend install && npm --prefix backend run build
+    startCommand: cd backend && npm start
+    envVars:
+      - key: PORT
+        value: 3000
+      - key: NODE_ENV
+        value: production
+      - key: FIANCE_NUMBER
+        sync: false
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: TELEGRAM_CHAT_ID
+        sync: false
+      - key: PUPPETEER_SKIP_CHROMIUM_DOWNLOAD
+        value: true
