@@ -2,6 +2,7 @@
 nixPkgs = [
   "nodejs_20",
   "chromium",
+  "glib",
   "nss",
   "nspr",
   "atk",
@@ -20,10 +21,12 @@ nixPkgs = [
   "xorg.libXfixes",
   "xorg.libXrandr",
   "xorg.libxcb",
-  "glib",
   "gtk3",
   "alsa-lib"
 ]
+
+[phases.setup.environment]
+PUPPETEER_SKIP_CHROMIUM_DOWNLOAD = "true"
 
 [phases.build]
 cmds = [
