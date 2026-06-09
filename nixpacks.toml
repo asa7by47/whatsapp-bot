@@ -28,7 +28,7 @@ nixPkgs = [
 [phases.build]
 cmds = [
   "npm --prefix frontend install",
-  "npm --prefix frontend run build",
+  "cd frontend && npx tsc -b && npx vite build",
   "mkdir -p backend/public",
   "cp -r frontend/dist/* backend/public/",
   "npm --prefix backend install",
